@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import movieStore from "./store/MovieStore.js";
+import { useState } from "react";
 
 const Items = styled.div`
   background-color: #f2f3f5;
@@ -6,7 +8,6 @@ const Items = styled.div`
   float: left;
   text-align: center;
   flex-wrap: flex;
-  font-size: 13pt;
 `;
 
 const DeleteButton = styled.button`
@@ -30,12 +31,21 @@ const WatchedButton = styled.button`
   font-weight: bold;
   border: transparent;
 `;
+
 const UnWatchedMovieItems = ({ unwatchedmovie }) => {
+  let [toggle, setToggle] = useState(movieStore.movies.watched);
+  const toggleButton = () => {
+    setToggle(toggle === false ? true : false);
+  };
   return (
     <Items>
       <p>{unwatchedmovie.name}</p>
-      <DeleteButton>Delete</DeleteButton>
-      <WatchedButton>Watched</WatchedButton>
+      <DeleteButton onClick={() => movieStore.deleteMovie(unwatchedmovie.id)}>
+        Delete
+      </DeleteButton>
+      <WatchedButton onClick={() => toggleButton()}>
+        {toggle === false ? "Unwatched" : "Watched"}
+      </WatchedButton>
     </Items>
   );
 };

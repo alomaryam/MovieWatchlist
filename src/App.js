@@ -1,15 +1,11 @@
-import WatchedList from "./components/WList.js";
-import UnWatchedList from "./components/UList.js";
-import movieStore from "./components/store/MovieStore.js";
-import { observer } from "mobx-react";
+import Library from "./components/Library.js";
 
 function App() {
   return (
     <div>
-      <UnWatchedList unwatchedmovies={movieStore.movies} />
-      <WatchedList watchedmovies={movieStore.movies} />
+      <Library />
     </div>
   );
 }
 
-export default observer(App);
+export default App;

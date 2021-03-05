@@ -1,6 +1,7 @@
 import UWItems from "./UItems.js";
 import { observer } from "mobx-react";
 import styled from "styled-components";
+import { useState } from "react";
 
 const List = styled.div`
   padding: 10px;
@@ -12,11 +13,30 @@ const List = styled.div`
   margin-right: 30px;
 `;
 
+const Title = styled.p`
+  font-weight: bold;
+`;
+
 const UnWatchedList = ({ unwatchedmovies }) => {
+  const [query, setQuery] = useState("");
+
+  //query filter needs ternary operator if query not found print movie not found!.
   const unwatchedlist = unwatchedmovies
     .filter((movie) => movie.watched === false)
+    .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
     .map((movie) => <UWItems unwatchedmovie={movie} />);
-  return <List> {unwatchedlist} </List>;
+  return (
+    <List>
+      <Title>Watchlist</Title>
+      <btn>{unwatchedlist.length}</btn>
+      <input
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Search movies..."
+      ></input>
+      <br />
+      {unwatchedlist}
+    </List>
+  );
 };
 
 export default observer(UnWatchedList);
