@@ -5,11 +5,12 @@ import { useState } from "react";
 
 const List = styled.div`
   padding: 10px;
-  background-color: #f2f3f5;
   display: grid;
   float: left;
-  flex-wrap: flex;
   font-size: 13pt;
+  margin-right: 30px;
+  background: #f2f3f5;
+  width: 400px;
 `;
 
 const Title = styled.p`

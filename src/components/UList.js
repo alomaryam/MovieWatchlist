@@ -5,12 +5,12 @@ import { useState } from "react";
 
 const List = styled.div`
   padding: 10px;
-  background-color: #f2f3f5;
   display: grid;
   float: left;
-  flex-wrap: flex;
   font-size: 13pt;
   margin-right: 30px;
+  background: #f2f3f5;
+  width: 400px;
 `;
 
 const Title = styled.p`
@@ -20,7 +20,6 @@ const Title = styled.p`
 const UnWatchedList = ({ unwatchedmovies }) => {
   const [query, setQuery] = useState("");
 
-  //query filter needs ternary operator if query not found print movie not found!.
   const unwatchedlist = unwatchedmovies
     .filter((movie) => movie.watched === false)
     .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()));
@@ -42,3 +41,5 @@ const UnWatchedList = ({ unwatchedmovies }) => {
 };
 
 export default observer(UnWatchedList);
+
+//how to code "showing # out of # in line 31

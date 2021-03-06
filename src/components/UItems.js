@@ -2,12 +2,13 @@ import styled from "styled-components";
 import movieStore from "./store/MovieStore.js";
 import { observer } from "mobx-react";
 
+const Wrap = styled.div`
+  position: fixed;
+  margin-left: 200px;
+`;
+
 const Items = styled.div`
-  background-color: #f2f3f5;
   display: flex;
-  float: left;
-  text-align: center;
-  flex-wrap: flex;
 `;
 
 const DeleteButton = styled.button`
@@ -36,12 +37,14 @@ const UnWatchedMovieItems = ({ unwatchedmovie }) => {
   return (
     <Items>
       <p>{unwatchedmovie.name}</p>
-      <DeleteButton onClick={() => movieStore.deleteMovie(unwatchedmovie.id)}>
-        Delete
-      </DeleteButton>
-      <WatchedButton onClick={() => (unwatchedmovie.watched = true)}>
-        Watched
-      </WatchedButton>
+      <Wrap>
+        <DeleteButton onClick={() => movieStore.deleteMovie(unwatchedmovie.id)}>
+          Delete
+        </DeleteButton>
+        <WatchedButton onClick={() => (unwatchedmovie.watched = true)}>
+          Watched
+        </WatchedButton>
+      </Wrap>
     </Items>
   );
 };
