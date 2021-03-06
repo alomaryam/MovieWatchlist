@@ -31,7 +31,7 @@ const AddMovie = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    movieStore.addMovie(name);
+    if (name.name !== "") movieStore.addMovie(name);
   };
 
   return (

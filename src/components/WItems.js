@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import movieStore from "./store/MovieStore.js";
-import { useState } from "react";
+import { observer } from "mobx-react";
 
 const Items = styled.div`
   background-color: #f2f3f5;
@@ -35,21 +35,17 @@ const UnWatchedButton = styled.button`
 `;
 
 const WatchedMovieItems = ({ watchedmovie }) => {
-  let [toggle, setToggle] = useState(movieStore.movies.watched);
-  const toggleButton = () => {
-    setToggle(toggle === false ? true : false);
-  };
   return (
     <Items>
       <p>{watchedmovie.name}</p>
       <DeleteButton onClick={() => movieStore.deleteMovie(watchedmovie.id)}>
         Delete
       </DeleteButton>
-      <UnWatchedButton onClick={toggleButton}>
-        {toggle === true ? "Watched" : "Unwatch"}
+      <UnWatchedButton onClick={() => (watchedmovie.watched = false)}>
+        Unwatch
       </UnWatchedButton>
     </Items>
   );
 };
 
-export default WatchedMovieItems;
+export default observer(WatchedMovieItems);
