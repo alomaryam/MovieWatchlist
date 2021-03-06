@@ -20,8 +20,7 @@ const WatchedList = ({ watchedmovies }) => {
   const [query, setQuery] = useState("");
   const watchedlist = watchedmovies
     .filter((movie) => movie.watched === true)
-    .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
-    .map((movie) => <WItems watchedmovie={movie} />);
+    .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <List>
@@ -32,7 +31,9 @@ const WatchedList = ({ watchedmovies }) => {
         placeholder="Search movies..."
       ></input>
       <br />
-      {watchedlist}
+      {watchedlist.length
+        ? watchedlist.map((movie) => <WItems watchedmovie={movie} />)
+        : "movie not found"}
     </List>
   );
 };

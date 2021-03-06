@@ -23,8 +23,8 @@ const UnWatchedList = ({ unwatchedmovies }) => {
   //query filter needs ternary operator if query not found print movie not found!.
   const unwatchedlist = unwatchedmovies
     .filter((movie) => movie.watched === false)
-    .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
-    .map((movie) => <UWItems unwatchedmovie={movie} />);
+    .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()));
+
   return (
     <List>
       <Title>Watchlist</Title>
@@ -34,7 +34,9 @@ const UnWatchedList = ({ unwatchedmovies }) => {
         placeholder="Search movies..."
       ></input>
       <br />
-      {unwatchedlist}
+      {unwatchedlist.length
+        ? unwatchedlist.map((movie) => <UWItems unwatchedmovie={movie} />)
+        : "movie not found"}
     </List>
   );
 };
